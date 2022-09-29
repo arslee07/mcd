@@ -1,0 +1,12 @@
+[package]
+name = "mcd"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+markov = { version = "1.1", features = ["markgen"] }
+sled = { version = "0.34", features = ["compression"] }
+rmp-serde = { version = "1.1" }
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.21", features = ["macros", "rt-multi-thread"] }
+axum = "0.5"
