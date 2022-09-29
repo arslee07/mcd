@@ -70,11 +70,6 @@ mod routes {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let port = std::env::var("MCD_PORT")
-        .expect("MCD_PORT is missing")
-        .parse::<u16>()
-        .unwrap();
-
     let db = Arc::new(
         sled::Config::new()
             .use_compression(true)
@@ -91,7 +86,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .layer(Extension(db));
 
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 8668));
     Server::bind(&addr).serve(app.into_make_service()).await?;
 
     Ok(())
